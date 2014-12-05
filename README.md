@@ -1,5 +1,8 @@
 # SimpleCommandBus
 
+[![Build Status](https://travis-ci.org/Tactics/CommandBusBundle.svg?branch=master)](https://travis-ci.org/Tactics/CommandBusBundle)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Tactics/CommandBusBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Tactics/CommandBusBundle/?branch=master)
+
 Say we have a command called RegisterUser.
 
 ```php
