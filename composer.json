@@ -1,0 +1,22 @@
+{
+  "name": "tactics/command-bus-bundle",
+  "type": "symfony-bundle",
+  "keywords": ["symfony", "bundle"],
+  "description": "Handle Commands with CommandHandlers through a CommandBus",
+  "license": "MIT",
+  "authors": [
+    {"name": "Aaron Muylaert", "email": "aarton@tactics.be"},
+    {"name": "Jochen Janssens", "email": "jochen@tactics.be"},
+    {"name": "Bart Ruysseveldt", "email": "bart@tactics.be"}
+  ],
+  "require": {
+    "php": ">=5.5",
+    "symfony/dependency-injection": "~2.3",
+    "symfony/framework-bundle": "~2.3"
+  },
+  "autoload": {
+    "psr-0": {
+      "Tactics\\Bundle\\CommandBusBundle\\": "src/"
+    }
+  }
+}

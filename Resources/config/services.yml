@@ -1,0 +1,5 @@
+services:
+    command_bus:
+        class: Tactics\CommandBusBundle\CommandBus\SimpleCommandBus
+    short_name_strategy:
+        class: Tactics\CommandBusBundle\NamingStrategy\ShortNameStrategy
