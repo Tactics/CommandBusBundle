@@ -13,6 +13,7 @@ interface CommandBus
 {
     /**
      * @param CommandHandler $handler
+     * @return void
      */
     public function registerHandler(CommandHandler $handler);
 
@@ -23,6 +24,7 @@ interface CommandBus
 
     /**
      * @param Command $command
+     * @return void
      */
     public function handle(Command $command);
 }
