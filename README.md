@@ -77,4 +77,4 @@ $cmd->value = 'Foo';
 $this->get('command_bus')->handle($cmd);
 ```
 
-\o/
+\m/
