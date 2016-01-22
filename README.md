@@ -49,7 +49,7 @@ use Pringles\DomainBundle\CommandBus\SimpleCommandBus;
 
 function someController()
 {
-    $bus = new SimpleCommandBus();
+    $bus = new SimpleCommandBus(new ShortNameStrategy());
     $bus->registerHandler(new RegisterUserHandler($personRepository));
 
     $cmd = new RegisterUser;
