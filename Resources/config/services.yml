@@ -2,6 +2,6 @@ services:
     command_bus:
         class: Tactics\CommandBusBundle\CommandBus\SimpleCommandBus
         arguments:
-            - @short_name_strategy
+            - '@short_name_strategy'
     short_name_strategy:
         class: Tactics\CommandBusBundle\NamingStrategy\ShortNameStrategy
