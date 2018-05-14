@@ -37,7 +37,7 @@ class SimpleCommandBus implements CommandBus
     public function registerHandler(CommandHandler $handler)
     {
         $this->guardAgainstDuplicateHandlers($handler);
-        $this->handlers[] = $handler;
+        $this->handlers[$this->namingStrategy->getCommandHandlerName($handler)] = $handler;
     }
 
     /**
@@ -79,13 +79,8 @@ class SimpleCommandBus implements CommandBus
      */
     private function findHandler($needle)
     {
-        $filtered = array_filter(
-            $this->handlers,
-            function(CommandHandler $handler) use ($needle) {
-                return $needle === $this->namingStrategy->getCommandHandlerName($handler);
-            }
-        );
-
-        return array_shift($filtered);
+        return array_key_exists($needle, $this->handlers)
+            ? $this->handlers[$needle]
+            : null;
     }
 }
