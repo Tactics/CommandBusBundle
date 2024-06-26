@@ -1,5 +1,6 @@
 services:
     command_bus:
+        public: true
         class: Tactics\CommandBusBundle\CommandBus\SimpleCommandBus
         arguments:
             - '@short_name_strategy'
