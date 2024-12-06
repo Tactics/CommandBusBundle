@@ -51,7 +51,7 @@ class SimpleCommandBus implements CommandBus
     /**
      * @inheritDoc
      */
-    public function handle(Command $command)
+    public function handle(Command $command, $options = [])
     {
         $handler = $this->findHandler($this->namingStrategy->getCommandName($command));
 
@@ -59,7 +59,7 @@ class SimpleCommandBus implements CommandBus
             return;
         }
 
-        $handler->handle($command);
+        $handler->handle($command, $options);
     }
 
     /**
