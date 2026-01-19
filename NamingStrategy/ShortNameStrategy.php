@@ -13,7 +13,7 @@ class ShortNameStrategy implements NamingStrategy
     /**
      * @inheritDoc
      */
-    public function getCommandName(Command $command)
+    public function getCommandName(Command $command): string
     {
         return (new \ReflectionClass($command))->getShortName();
     }
@@ -21,7 +21,7 @@ class ShortNameStrategy implements NamingStrategy
     /**
      * @inheritDoc
      */
-    public function getCommandHandlerName(CommandHandler $commandHandler)
+    public function getCommandHandlerName(CommandHandler $commandHandler): string
     {
         return str_replace('Handler', '', (new \ReflectionClass($commandHandler))->getShortName());
     }

@@ -15,11 +15,11 @@ interface NamingStrategy
      * @param Command $command
      * @return string
      */
-    public function getCommandName(Command $command);
+    public function getCommandName(Command $command): string;
 
     /**
      * @param CommandHandler $handler
      * @return string
      */
-    public function getCommandHandlerName(CommandHandler $handler);
+    public function getCommandHandlerName(CommandHandler $handler): string;
 }

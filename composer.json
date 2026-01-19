@@ -10,7 +10,7 @@
     {"name": "Bart Ruysseveldt", "email": "bart@tactics.be"}
   ],
   "require": {
-    "php": ">=5.5",
+    "php": ">=8.1",
     "symfony/dependency-injection": "^4.2|^5.0|^6.0|^7.0",
     "symfony/framework-bundle": "^4.2|^5.0|^6.0|^7.0"
   },

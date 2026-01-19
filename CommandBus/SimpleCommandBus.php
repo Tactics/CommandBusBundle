@@ -16,12 +16,12 @@ class SimpleCommandBus implements CommandBus
     /**
      * @var array
      */
-    private $handlers = [];
+    private array $handlers = [];
 
     /**
-     * @var \Tactics\CommandBusBundle\NamingStrategy\NamingStrategy
+     * @var NamingStrategy
      */
-    private $namingStrategy;
+    private NamingStrategy $namingStrategy;
 
     /**e
      * @param NamingStrategy $namingStrategy
@@ -33,8 +33,9 @@ class SimpleCommandBus implements CommandBus
 
     /**
      * @inheritDoc
+     * @throws DuplicateHandlerException
      */
-    public function registerHandler(CommandHandler $handler)
+    public function registerHandler(CommandHandler $handler): void
     {
         $this->guardAgainstDuplicateHandlers($handler);
         $this->handlers[$this->namingStrategy->getCommandHandlerName($handler)] = $handler;
@@ -43,7 +44,7 @@ class SimpleCommandBus implements CommandBus
     /**
      * @inheritDoc
      */
-    public function getHandlers()
+    public function getHandlers(): array
     {
         return $this->handlers;
     }
@@ -51,7 +52,7 @@ class SimpleCommandBus implements CommandBus
     /**
      * @inheritDoc
      */
-    public function handle(Command $command, $options = [])
+    public function handle(Command $command, $options = []): void
     {
         $handler = $this->findHandler($this->namingStrategy->getCommandName($command));
 
@@ -66,7 +67,7 @@ class SimpleCommandBus implements CommandBus
      * @param CommandHandler $handler
      * @throws DuplicateHandlerException
      */
-    private function guardAgainstDuplicateHandlers(CommandHandler $handler)
+    private function guardAgainstDuplicateHandlers(CommandHandler $handler): void
     {
         if ($this->findHandler($this->namingStrategy->getCommandHandlerName($handler))) {
             throw new DuplicateHandlerException($handler);
@@ -75,12 +76,10 @@ class SimpleCommandBus implements CommandBus
 
     /**
      * @param string $needle
-     * @return CommandHandler
+     * @return CommandHandler|null
      */
-    private function findHandler($needle)
+    private function findHandler(string $needle): ?CommandHandler
     {
-        return array_key_exists($needle, $this->handlers)
-            ? $this->handlers[$needle]
-            : null;
+        return $this->handlers[$needle] ?? null;
     }
 }
