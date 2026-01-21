@@ -5,6 +5,7 @@ namespace Tactics\CommandBusBundle\CommandBus;
 use Tactics\CommandBusBundle\Command\Command;
 use Tactics\CommandBusBundle\CommandHandler\CommandHandler;
 use Tactics\CommandBusBundle\Exception\DuplicateHandlerException;
+use Tactics\CommandBusBundle\Exception\HandlerNotFoundException;
 use Tactics\CommandBusBundle\NamingStrategy\NamingStrategy;
 
 /**
@@ -51,13 +52,15 @@ class SimpleCommandBus implements CommandBus
 
     /**
      * @inheritDoc
+     * @throws HandlerNotFoundException
      */
     public function handle(Command $command, $options = []): void
     {
-        $handler = $this->findHandler($this->namingStrategy->getCommandName($command));
+        $commandName = $this->namingStrategy->getCommandName($command);
+        $handler = $this->findHandler($commandName);
 
         if (! $handler) {
-            return;
+            throw new HandlerNotFoundException($commandName);
         }
 
         $handler->handle($command, $options);
